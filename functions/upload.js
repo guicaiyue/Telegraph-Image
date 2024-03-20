@@ -9,6 +9,17 @@ export async function onRequestPost(context) {  // Contents of context object
      } = context;
      context.request
      const url = new URL(request.url);
+
+     let uploadDomains = context.env.UPLOAD_DOMAINS;
+     if (uploadDomains != null && uploadDomains != "") {
+      uploadDomains = uploadDomains.split(",");
+       let Referer = request.headers.get('Referer') || "Referer";
+       let refererUrl = new URL(Referer);
+       if (!uploadDomains.includes(refererUrl.hostname)) {
+         return new Response('权限不足', { status: 403 });
+       }
+     }
+
      const response = fetch('https://telegra.ph/' + url.pathname + url.search, {
          method: request.method,
          headers: request.headers,

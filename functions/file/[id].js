@@ -9,7 +9,16 @@ export async function onRequest(context) {  // Contents of context object
      } = context;
      context.request
      const url = new URL(request.url);
-    
+     
+    let allowedDomains = context.env.ALLOWED_DOMAINS;
+    if (allowedDomains != null && allowedDomains != "") {
+      allowedDomains = allowedDomains.split(",");
+      let Referer = request.headers.get('Referer') || "Referer";
+      let refererUrl = new URL(Referer);
+      if (!allowedDomains.includes(refererUrl.hostname)) {
+        return Response.redirect("https://img.131213.xyz/asset/image/blocked.png", 302);
+      }
+    }
     const response = fetch('https://telegra.ph/' + url.pathname + url.search, {
          method: request.method,
          headers: request.headers,
