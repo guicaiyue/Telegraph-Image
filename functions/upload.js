@@ -15,6 +15,8 @@ export async function onRequestPost(context) {  // Contents of context object
       uploadDomains = uploadDomains.split(",");
        let Referer = request.headers.get('Referer');
        if(typeof request.headers.get('Referer') == "undefined" ||request.headers.get('Referer') == null || request.headers.get('Referer') == ""){
+          return new Response('权限不足', { status: 403 });
+       }else {
         let refererUrl = new URL(Referer);
         if (!uploadDomains.includes(refererUrl.hostname)) {
           return new Response('权限不足', { status: 403 });

@@ -15,6 +15,8 @@ export async function onRequest(context) {  // Contents of context object
       allowedDomains = allowedDomains.split(",");
       let Referer = request.headers.get('Referer');
       if(typeof request.headers.get('Referer') == "undefined" ||request.headers.get('Referer') == null || request.headers.get('Referer') == ""){
+          return Response.redirect("https://img.131213.xyz/asset/image/blocked.png", 302);
+      }else {
         let refererUrl = new URL(Referer);
         if (!allowedDomains.includes(refererUrl.hostname)) {
           return Response.redirect("https://img.131213.xyz/asset/image/blocked.png", 302);
