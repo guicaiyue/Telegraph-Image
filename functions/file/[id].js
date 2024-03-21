@@ -11,15 +11,18 @@ export async function onRequest(context) {  // Contents of context object
      const url = new URL(request.url);
      
     let allowedDomains = context.env.ALLOWED_DOMAINS;
+    console.log(allowedDomains);
     if (allowedDomains != null && allowedDomains != "") {
       allowedDomains = allowedDomains.split(",");
+      console.log(allowedDomains);
       let Referer = request.headers.get('Referer');
-      if(typeof request.headers.get('Referer') == "undefined" ||request.headers.get('Referer') == null || request.headers.get('Referer') == ""){
-          return Response.redirect("https://img.131213.xyz/asset/image/blocked.png", 302);
+      console.log(Referer);
+      if(typeof request.headers.get('Referer') == "undefined" ||Referer == null || Referer == ""){
+          return Response.redirect("https://gcore.jsdelivr.net/gh/guicaiyue/FigureBed@master/MImg/20240321211254095.png", 302);
       }else {
         let refererUrl = new URL(Referer);
         if (!allowedDomains.includes(refererUrl.hostname)) {
-          return Response.redirect("https://img.131213.xyz/asset/image/blocked.png", 302);
+          return Response.redirect("https://gcore.jsdelivr.net/gh/guicaiyue/FigureBed@master/MImg/20240321211254095.png", 302);
         }
       }
     }

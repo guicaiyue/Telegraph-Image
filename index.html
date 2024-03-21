@@ -26,18 +26,17 @@
   }
   </style>
   <script>
-  setTimeout(function() {  
+  setTimeout(function() {
     // 删除原标题
-// 删除原标题
-document.getElementsByClassName("title")[0].remove();
-// 添加新标题
-document.getElementsByClassName("main")[0].insertAdjacentHTML('afterbegin',`<div class="title" data-v-5e6831cc style="color:white;display:block"><a style="color:white" href="https://xirizhi.cn">昔日长廊博客</a>私人图床,<a style="color:white" href="https://xirizhi.cn/?p=1710567769974">自建教程</a></div>`);
-// 删除原提示
-document.getElementsByClassName("footer")[0].remove();
-// 添加新提示
-document.getElementsByClassName("container")[0].insertAdjacentHTML('beforeend',`<div class="footer" style="color:white;display:block">
-  通过 <a style="color:white" href="https://github.com/cf-pages/Telegraph-Image" target="_blank" data-v-5d5649c4>Telegraph-Image</a> 的代码库搭建
-</div>`);
-}, 700); // 延迟的毫秒数
+    document.getElementsByClassName("title")[0].remove();
+    // 添加新标题
+    document.getElementsByClassName("main")[0].insertAdjacentHTML('afterbegin',`<div class="title" data-v-5e6831cc style="color:white;display:block"><a style="color:white" href="https://xirizhi.cn">昔日长廊博客</a>私人图床,<a style="color:white" href="https://xirizhi.cn/?p=1710567769974">自建教程</a></div>`);
+    // 删除原提示
+    document.getElementsByClassName("footer")[0].remove();
+    // 添加新提示
+    document.getElementsByClassName("container")[0].insertAdjacentHTML('beforeend',`<div class="footer" style="color:white;display:block">
+      通过 <a style="color:white" href="https://github.com/cf-pages/Telegraph-Image" target="_blank" data-v-5d5649c4>Telegraph-Image</a> 的代码库搭建
+    </div>`);
+  }, 700); // 延迟的毫秒数
   </script>
 </html>
