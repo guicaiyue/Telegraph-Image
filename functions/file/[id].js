@@ -11,16 +11,16 @@ export async function onRequest(context) {  // Contents of context object
      const url = new URL(request.url);
      
     let allowedDomains = context.env.ALLOWED_DOMAINS;
-    console.log(allowedDomains);
     if (allowedDomains != null && allowedDomains != "") {
       allowedDomains = allowedDomains.split(",");
-      console.log(allowedDomains);
       let Referer = request.headers.get('Referer');
       console.log(Referer);
       if(typeof request.headers.get('Referer') == "undefined" ||Referer == null || Referer == ""){
           return Response.redirect("https://gcore.jsdelivr.net/gh/guicaiyue/FigureBed@master/MImg/20240321211254095.png", 302);
       }else {
         let refererUrl = new URL(Referer);
+        console.log(uploadDomains);
+        console.log(refererUrl.hostname);
         if (!allowedDomains.includes(refererUrl.hostname)) {
           return Response.redirect("https://gcore.jsdelivr.net/gh/guicaiyue/FigureBed@master/MImg/20240321211254095.png", 302);
         }

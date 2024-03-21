@@ -18,6 +18,8 @@ export async function onRequestPost(context) {  // Contents of context object
           return new Response('权限不足', { status: 403 });
        }else {
         let refererUrl = new URL(Referer);
+        console.log(uploadDomains);
+        console.log(refererUrl.hostname);
         if (!uploadDomains.includes(refererUrl.hostname)) {
           return new Response('权限不足', { status: 403 });
         }
