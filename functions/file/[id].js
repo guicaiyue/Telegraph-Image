@@ -19,7 +19,7 @@ export async function onRequest(context) {  // Contents of context object
           return Response.redirect("https://gcore.jsdelivr.net/gh/guicaiyue/FigureBed@master/MImg/20240321211254095.png", 302);
       }else {
         let refererUrl = new URL(Referer);
-        console.log(uploadDomains);
+        console.log(allowedDomains);
         console.log(refererUrl.hostname);
         if (!allowedDomains.includes(refererUrl.hostname)) {
           return Response.redirect("https://gcore.jsdelivr.net/gh/guicaiyue/FigureBed@master/MImg/20240321211254095.png", 302);
