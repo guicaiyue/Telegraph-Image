@@ -13,10 +13,12 @@ export async function onRequestPost(context) {  // Contents of context object
      let uploadDomains = context.env.UPLOAD_DOMAINS;
      if (uploadDomains != null && uploadDomains != "") {
       uploadDomains = uploadDomains.split(",");
-       let Referer = request.headers.get('Referer') || "Referer";
-       let refererUrl = new URL(Referer);
-       if (!uploadDomains.includes(refererUrl.hostname)) {
-         return new Response('权限不足', { status: 403 });
+       let Referer = request.headers.get('Referer');
+       if(typeof request.headers.get('Referer') == "undefined" ||request.headers.get('Referer') == null || request.headers.get('Referer') == ""){
+        let refererUrl = new URL(Referer);
+        if (!uploadDomains.includes(refererUrl.hostname)) {
+          return new Response('权限不足', { status: 403 });
+        }
        }
      }
 

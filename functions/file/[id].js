@@ -13,10 +13,12 @@ export async function onRequest(context) {  // Contents of context object
     let allowedDomains = context.env.ALLOWED_DOMAINS;
     if (allowedDomains != null && allowedDomains != "") {
       allowedDomains = allowedDomains.split(",");
-      let Referer = request.headers.get('Referer') || "Referer";
-      let refererUrl = new URL(Referer);
-      if (!allowedDomains.includes(refererUrl.hostname)) {
-        return Response.redirect("https://img.131213.xyz/asset/image/blocked.png", 302);
+      let Referer = request.headers.get('Referer');
+      if(typeof request.headers.get('Referer') == "undefined" ||request.headers.get('Referer') == null || request.headers.get('Referer') == ""){
+        let refererUrl = new URL(Referer);
+        if (!allowedDomains.includes(refererUrl.hostname)) {
+          return Response.redirect("https://img.131213.xyz/asset/image/blocked.png", 302);
+        }
       }
     }
     const response = fetch('https://telegra.ph/' + url.pathname + url.search, {
